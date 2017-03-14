@@ -31,10 +31,13 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from __future__ import print_function
 
+import sys
 import unittest
 import rospy
 import dynamic_reconfigure.client
+
 
 class TestSimpleDynamicReconfigureClient(unittest.TestCase):
 
@@ -45,6 +48,9 @@ class TestSimpleDynamicReconfigureClient(unittest.TestCase):
         self.assertEqual(0.0, config['double_'])
         self.assertEqual('foo', config['str_'])
         self.assertEqual(False, config['bool_'])
+        self.assertEqual(1.0, config['double_no_minmax'])
+        self.assertEqual(2.0, config['double_no_max'])
+        print(config, file=sys.stderr)
 
         int_ = 7
         double_ = 0.75
